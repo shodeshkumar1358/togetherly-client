@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ThemeToggle from "@/components/theme-toggle";
 
 import {
   HeartHandshake,
@@ -102,27 +103,28 @@ export default function LoginForm() {
   return (
     <main
       data-auth-page
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[#e8f5ec] via-[#f5faf5] to-[#e0f2e5] px-4 py-10 text-[#17251d]"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[#e8f5ec] via-[#f5faf5] to-[#e0f2e5] px-4 py-10 text-[#17251d] dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900 dark:text-white"
     >
+      <ThemeToggle className="absolute right-4 top-4 z-10" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-24 top-1/4 size-72 rounded-full bg-emerald-300/25 blur-3xl"
+        className="pointer-events-none absolute -left-24 top-1/4 size-72 rounded-full bg-emerald-300/25 blur-3xl dark:bg-emerald-700/10"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 bottom-0 size-80 rounded-full bg-lime-300/20 blur-3xl"
+        className="pointer-events-none absolute -right-20 bottom-0 size-80 rounded-full bg-lime-300/20 blur-3xl dark:bg-lime-700/5"
       />
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-5 right-5 z-50 animate-in slide-in-from-right-5 fade-in duration-300">
           <div
-            className={`flex items-center gap-3 bg-white border rounded-xl shadow-lg px-4 py-3 min-w-[300px] max-w-[calc(100vw-40px)] ${
+            className={`flex items-center gap-3 rounded-xl border bg-white px-4 py-3 shadow-lg dark:border-white/10 dark:bg-neutral-900 dark:text-white min-w-[300px] max-w-[calc(100vw-40px)] ${
               toastType === "error" ? "border-red-200" : "border-[#dce4ef]"
             }`}
           >
             {/* Toast Icon */}
             <div
-              className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center ${
+              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full dark:bg-neutral-800 ${
                 toastType === "error" ? "bg-red-50" : "bg-emerald-50"
               }`}
             >
@@ -143,7 +145,7 @@ export default function LoginForm() {
                 {toastType === "error" ? "Login Failed!" : "Coming Soon!"}
               </p>
 
-              <p className="text-[10px] text-[#64748b] mt-1 break-words">
+              <p className="mt-1 break-words text-[10px] text-[#64748b] dark:text-neutral-400">
                 {toastMessage}
               </p>
             </div>
@@ -152,7 +154,7 @@ export default function LoginForm() {
             <button
               type="button"
               onClick={() => setShowToast(false)}
-              className="text-[#94a3b8] hover:text-[#101828] transition"
+              className="text-[#94a3b8] transition hover:text-[#101828] dark:hover:text-white"
               aria-label="Close notification"
             >
               <X size={16} />
@@ -162,18 +164,18 @@ export default function LoginForm() {
       )}
 
       {/* Login Card */}
-      <div className="relative w-full max-w-md rounded-3xl border border-[#dce7df] bg-white px-6 py-8 shadow-[0_24px_70px_rgba(6,78,53,0.13)] sm:px-9 sm:py-10">
+      <div className="relative w-full max-w-md rounded-3xl border border-[#dce7df] bg-white px-6 py-8 shadow-[0_24px_70px_rgba(6,78,53,0.13)] dark:border-white/10 dark:bg-neutral-900 sm:px-9 sm:py-10">
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-8">
           <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#087443] to-[#25c45c] shadow-md shadow-emerald-200">
             <HeartHandshake size={24} className="text-white" />
           </div>
 
-          <h1 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-[#17251d]">
+          <h1 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-[#17251d] dark:text-white">
             Welcome Back
           </h1>
 
-          <p className="mt-2 text-sm leading-6 text-[#68776d]">
+          <p className="mt-2 text-sm leading-6 text-[#68776d] dark:text-neutral-400">
             Sign in to organize and join community drives
           </p>
         </div>
@@ -182,7 +184,7 @@ export default function LoginForm() {
         <form onSubmit={handleSubmit} className="space-y-[17px]">
           {/* Email */}
           <div>
-            <label className="mb-2 block text-sm font-bold text-[#17251d]">
+            <label className="mb-2 block text-sm font-bold text-[#17251d] dark:text-neutral-200">
               Email
             </label>
 
@@ -200,7 +202,7 @@ export default function LoginForm() {
                 placeholder="name@example.com"
                 required
                 autoComplete="email"
-                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10"
+                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10 dark:border-white/10 dark:bg-neutral-950 dark:text-white dark:placeholder:text-neutral-500"
               />
             </div>
           </div>
@@ -208,14 +210,14 @@ export default function LoginForm() {
           {/* Password */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-bold text-[#17251d]">
+              <label className="block text-sm font-bold text-[#17251d] dark:text-neutral-200">
                 Password
               </label>
 
               <button
                 type="button"
                 onClick={handleForgotPassword}
-                className="text-xs font-semibold text-[#087443] transition hover:text-[#056b39]"
+                className="text-xs font-semibold text-[#087443] transition hover:text-[#056b39] dark:text-emerald-400 dark:hover:text-emerald-300"
               >
                 Forgot password?
               </button>
@@ -235,14 +237,14 @@ export default function LoginForm() {
                 placeholder="••••••••"
                 required
                 autoComplete="current-password"
-                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-11 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10"
+                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-11 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10 dark:border-white/10 dark:bg-neutral-950 dark:text-white dark:placeholder:text-neutral-500"
               />
 
               {/* Show / Hide Password */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#68776d] transition hover:text-[#087443]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#68776d] transition hover:text-[#087443] dark:text-neutral-400 dark:hover:text-emerald-300"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
@@ -264,11 +266,11 @@ export default function LoginForm() {
 
         {/* Register Link */}
         <div className="text-center mt-6">
-          <p className="text-sm text-[#68776d]">
+          <p className="text-sm text-[#68776d] dark:text-neutral-400">
             Don&apos;t have an account?{" "}
             <Link
               href="/signup"
-              className="ml-1 font-bold text-[#087443] transition hover:text-[#056b39]"
+              className="ml-1 font-bold text-[#087443] transition hover:text-[#056b39] dark:text-emerald-400 dark:hover:text-emerald-300"
             >
               Register here
             </Link>

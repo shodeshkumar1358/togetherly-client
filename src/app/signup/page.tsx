@@ -16,6 +16,7 @@ import {
   Check,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -102,28 +103,29 @@ export default function RegisterForm() {
   return (
     <main
       data-auth-page
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[#e8f5ec] via-[#f5faf5] to-[#e0f2e5] px-4 py-10 text-[#17251d]"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[#e8f5ec] via-[#f5faf5] to-[#e0f2e5] px-4 py-10 text-[#17251d] dark:from-neutral-950 dark:via-neutral-950 dark:to-neutral-900 dark:text-white"
     >
+      <ThemeToggle className="absolute right-4 top-4 z-10" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-24 top-1/4 size-72 rounded-full bg-emerald-300/25 blur-3xl"
+        className="pointer-events-none absolute -left-24 top-1/4 size-72 rounded-full bg-emerald-300/25 blur-3xl dark:bg-emerald-700/10"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 bottom-0 size-80 rounded-full bg-lime-300/20 blur-3xl"
+        className="pointer-events-none absolute -right-20 bottom-0 size-80 rounded-full bg-lime-300/20 blur-3xl dark:bg-lime-700/5"
       />
-      <div className="relative w-full max-w-lg rounded-3xl border border-[#dce7df] bg-white px-6 py-8 shadow-[0_24px_70px_rgba(6,78,53,0.13)] sm:px-9 sm:py-10">
+      <div className="relative w-full max-w-lg rounded-3xl border border-[#dce7df] bg-white px-6 py-8 shadow-[0_24px_70px_rgba(6,78,53,0.13)] dark:border-white/10 dark:bg-neutral-900 sm:px-9 sm:py-10">
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-6">
           <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#087443] to-[#25c45c] shadow-md shadow-emerald-200">
             <HeartHandshake size={24} className="text-white" />
           </div>
 
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-[#17251d]">
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-[#17251d] dark:text-white">
             Create Account
           </h1>
 
-          <p className="mt-2 text-sm leading-6 text-[#68776d]">
+          <p className="mt-2 text-sm leading-6 text-[#68776d] dark:text-neutral-400">
             Join the community and start driving social change
           </p>
         </div>
@@ -132,7 +134,7 @@ export default function RegisterForm() {
         <form onSubmit={handleSubmit} className="space-y-[17px]">
           {/* Full Name */}
           <div>
-            <label className="mb-2 block text-sm font-bold text-[#17251d]">
+            <label className="mb-2 block text-sm font-bold text-[#17251d] dark:text-neutral-200">
               Full Name
             </label>
 
@@ -149,14 +151,14 @@ export default function RegisterForm() {
                 onChange={handleChange}
                 placeholder="Tanvir Ahmed"
                 required
-                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10"
+                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10 dark:border-white/10 dark:bg-neutral-950 dark:text-white dark:placeholder:text-neutral-500"
               />
             </div>
           </div>
 
           {/* Email */}
           <div>
-            <label className="mb-2 block text-sm font-bold text-[#17251d]">
+            <label className="mb-2 block text-sm font-bold text-[#17251d] dark:text-neutral-200">
               Email Address
             </label>
 
@@ -173,14 +175,14 @@ export default function RegisterForm() {
                 onChange={handleChange}
                 placeholder="name@example.com"
                 required
-                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10"
+                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10 dark:border-white/10 dark:bg-neutral-950 dark:text-white dark:placeholder:text-neutral-500"
               />
             </div>
           </div>
 
           {/* Profile Photo URL */}
           <div>
-            <label className="mb-2 block text-sm font-bold text-[#17251d]">
+            <label className="mb-2 block text-sm font-bold text-[#17251d] dark:text-neutral-200">
               Profile Photo URL
             </label>
 
@@ -196,18 +198,18 @@ export default function RegisterForm() {
                 value={formData.photoURL}
                 onChange={handleChange}
                 placeholder="https://images.unsplash.com/..."
-                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10"
+                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-3 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10 dark:border-white/10 dark:bg-neutral-950 dark:text-white dark:placeholder:text-neutral-500"
               />
             </div>
 
-            <p className="mt-1 text-xs text-[#68776d]">
+            <p className="mt-1 text-xs text-[#68776d] dark:text-neutral-400">
               Optional: Leave empty for default avatar
             </p>
           </div>
 
           {/* Password */}
           <div>
-            <label className="mb-2 block text-sm font-bold text-[#17251d]">
+            <label className="mb-2 block text-sm font-bold text-[#17251d] dark:text-neutral-200">
               Password
             </label>
 
@@ -224,13 +226,13 @@ export default function RegisterForm() {
                 onChange={handleChange}
                 placeholder="••••••••"
                 required
-                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-11 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10"
+                className="h-12 w-full rounded-xl border border-[#dce7df] bg-[#f8fbf9] pl-10 pr-11 text-sm text-[#334155] outline-none transition placeholder:text-[#819187] focus:border-[#078f4c] focus:ring-4 focus:ring-emerald-700/10 dark:border-white/10 dark:bg-neutral-950 dark:text-white dark:placeholder:text-neutral-500"
               />
 
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#68776d] transition hover:text-[#087443]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#68776d] transition hover:text-[#087443] dark:text-neutral-400 dark:hover:text-emerald-300"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
@@ -249,7 +251,9 @@ export default function RegisterForm() {
 
                   <span
                     className={`text-xs ${
-                      rule.valid ? "text-[#087443]" : "text-[#68776d]"
+                      rule.valid
+                        ? "text-[#087443] dark:text-emerald-400"
+                        : "text-[#68776d] dark:text-neutral-400"
                     }`}
                   >
                     {rule.label}
@@ -261,7 +265,7 @@ export default function RegisterForm() {
 
           {/* Error Message */}
           {errorMessage && (
-            <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] font-medium text-red-600">
+            <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] font-medium text-red-600 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
               {errorMessage}
             </div>
           )}
@@ -280,11 +284,11 @@ export default function RegisterForm() {
 
         {/* Login Link */}
         <div className="text-center mt-5">
-          <p className="text-sm text-[#68776d]">
+          <p className="text-sm text-[#68776d] dark:text-neutral-400">
             Already have an account?{" "}
             <Link
               href="/login"
-              className="ml-1 font-bold text-[#087443] transition hover:text-[#056b39]"
+              className="ml-1 font-bold text-[#087443] transition hover:text-[#056b39] dark:text-emerald-400 dark:hover:text-emerald-300"
             >
               Login here
             </Link>

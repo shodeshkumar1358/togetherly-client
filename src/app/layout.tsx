@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import Footer from "@/components/home/footer";
 import "./globals.css";
 import NavMenu from "@/components/home/nav";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const Jakarta = Plus_Jakarta_Sans({
   variable: "--font-geist-sans",
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${Jakarta.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <NavMenu />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <NavMenu />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

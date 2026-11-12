@@ -6,8 +6,6 @@ import {
   ArrowRight,
   CalendarDays,
   Menu,
-  Moon,
-  Sun,
   X,
   LogOut,
   ChevronDown,
@@ -20,6 +18,7 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ThemeToggle from "@/components/theme-toggle";
 
 function UserAvatar({
   image,
@@ -33,9 +32,9 @@ function UserAvatar({
   const initial = name?.trim().charAt(0).toUpperCase() || "U";
 
   return (
-    <Avatar className={size}>
+    <Avatar className={`${size} ring-2 ring-background shadow-sm`}>
       <AvatarImage src={image || undefined} alt={name || "User"} />
-      <AvatarFallback className="bg-emerald-100 font-bold text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+      <AvatarFallback className="bg-gradient-to-br from-emerald-100 via-emerald-50 to-lime-100 font-extrabold text-primary-dark dark:from-emerald-900 dark:via-emerald-950 dark:to-neutral-900 dark:text-emerald-300">
         {initial}
       </AvatarFallback>
     </Avatar>
@@ -47,18 +46,8 @@ export default function NavMenu() {
 
   const user = session?.user;
 
-  const [isDark, setIsDark] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
-  // Theme Toggle
-  function toggleTheme() {
-    const nextIsDark = !isDark;
-
-    document.documentElement.classList.toggle("dark", nextIsDark);
-
-    setIsDark(nextIsDark);
-  }
 
   // Logout
   async function handleLogout() {
@@ -81,7 +70,7 @@ export default function NavMenu() {
           <Link
             href="/"
             aria-label="Togetherly Home"
-            className="flex min-w-0 items-center gap-2 md:justify-self-start"
+            className="flex min-w-0 items-center gap-2 md:justify-self-start dark:-ml-2 dark:rounded-full dark:bg-black dark:px-3 dark:py-1"
             onClick={() => setIsMenuOpen(false)}
           >
             <Image
@@ -129,7 +118,7 @@ export default function NavMenu() {
                 <ArrowRight className="size-4" />
               </Link>
             ) : (
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col items-center gap-1.5">
                 {/* Profile Dropdown */}
                 <div className="relative">
                   {/* Avatar Button */}
@@ -137,9 +126,15 @@ export default function NavMenu() {
                     type="button"
                     onClick={() => setIsProfileOpen((prev) => !prev)}
                     aria-expanded={isProfileOpen}
-                    className="flex items-center gap-2 rounded-full transition hover:opacity-80"
+                    aria-controls="profile-menu"
+                    aria-label={`${user.name || "User"} profile menu`}
+                    className="flex items-center gap-2 rounded-full border border-emerald-100 bg-white/80 py-1 pl-1 pr-2 transition hover:border-emerald-300 hover:bg-emerald-50 dark:border-white/10 dark:bg-neutral-800/80 dark:hover:border-emerald-700 dark:hover:bg-neutral-800"
                   >
                     <UserAvatar image={user.image} name={user.name} size="size-10" />
+
+                    <span className="hidden max-w-28 truncate text-xs font-extrabold tracking-tight text-[#064e35] sm:block dark:text-emerald-100">
+                      {user.name || "User"}
+                    </span>
 
                     <ChevronDown
                       className={`size-4 text-emerald-600 transition-transform ${
@@ -158,14 +153,17 @@ export default function NavMenu() {
                         onClick={() => setIsProfileOpen(false)}
                       />
 
-                      <div className="absolute right-0 top-14 z-50 w-64 overflow-hidden rounded-2xl border border-[#dce5ef] bg-white shadow-[0_12px_30px_rgba(0,0,0,0.12)] dark:border-white/10 dark:bg-neutral-900">
+                      <div
+                        id="profile-menu"
+                        className="absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
+                      >
                         {/* User Information */}
-                        <div className="border-b border-[#e3eaf1] px-4 py-3 dark:border-white/10">
-                          <p className="text-sm font-bold text-[#172033] dark:text-white">
+                        <div className="border-b border-border bg-mint/60 px-4 py-3 dark:bg-emerald-950/40">
+                          <p className="text-sm font-extrabold text-forest dark:text-emerald-100">
                             {user.name || "User"}
                           </p>
 
-                          <p className="mt-0.5 truncate text-xs text-[#718096] dark:text-gray-400">
+                          <p className="mt-0.5 truncate text-xs text-muted-foreground">
                             {user.email}
                           </p>
                         </div>
@@ -176,9 +174,9 @@ export default function NavMenu() {
                           <Link
                             href="/event/create"
                             onClick={() => setIsProfileOpen(false)}
-                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-[#172033] transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-white/10"
+                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-semibold text-foreground transition hover:bg-mint dark:hover:bg-emerald-950/60"
                           >
-                            <CirclePlus className="size-4 text-[#00b89c]" />
+                            <CirclePlus className="size-4 text-primary" />
                             Create Event
                           </Link>
 
@@ -186,9 +184,9 @@ export default function NavMenu() {
                           <Link
                             href="/event/manage"
                             onClick={() => setIsProfileOpen(false)}
-                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-[#172033] transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-white/10"
+                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-semibold text-foreground transition hover:bg-mint dark:hover:bg-emerald-950/60"
                           >
-                            <Settings className="size-4 text-[#8170ff]" />
+                            <Settings className="size-4 text-primary" />
                             Manage Events
                           </Link>
 
@@ -196,19 +194,18 @@ export default function NavMenu() {
                           <Link
                             href="/event/joined"
                             onClick={() => setIsProfileOpen(false)}
-                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-[#172033] transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-white/10"
+                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-semibold text-foreground transition hover:bg-mint dark:hover:bg-emerald-950/60"
                           >
-                            <CircleCheck className="size-4 text-[#00b89c]" />
+                            <CircleCheck className="size-4 text-primary" />
                             Joined Events
                           </Link>
                         </div>
 
-                        {/* Logout */}
-                        <div className="border-t border-[#e3eaf1] p-2 dark:border-white/10">
+                        <div className="border-t border-border p-2">
                           <button
                             type="button"
                             onClick={handleLogout}
-                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-red-500 transition hover:bg-red-50 dark:hover:bg-red-500/10"
+                            className="flex min-h-10 w-full items-center gap-3 rounded-lg bg-red-50 px-3 py-2.5 text-[13px] font-bold text-red-600 transition hover:bg-red-100 dark:bg-red-950/40 dark:text-red-300 dark:hover:bg-red-950/70"
                           >
                             <LogOut className="size-4" />
                             Logout
@@ -219,32 +216,11 @@ export default function NavMenu() {
                   )}
                 </div>
 
-                {/* Separate Logout Button */}
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="hidden items-center gap-2 rounded-lg border border-[#e2e8f0] px-3 py-2 text-xs font-semibold text-red-500 transition hover:border-red-200 hover:bg-red-50 sm:flex dark:border-white/10 dark:hover:bg-red-500/10"
-                >
-                  <LogOut className="size-3.5" />
-                  Logout
-                </button>
               </div>
             )}
 
             {/* Theme Toggle */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-              aria-pressed={isDark}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-[#d7e5da] text-[#17251d] transition-colors hover:bg-[#e8f5ec] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#078f4c] dark:border-white/15 dark:text-white dark:hover:bg-white/10"
-            >
-              {isDark ? (
-                <Sun className="size-4" />
-              ) : (
-                <Moon className="size-4" />
-              )}
-            </button>
+            <ThemeToggle />
 
             {/* Mobile Menu Button */}
             <button
@@ -295,29 +271,48 @@ export default function NavMenu() {
                 <ArrowRight className="size-4" />
               </Link>
             ) : (
-              <div className="flex items-center justify-between rounded-xl bg-emerald-50 p-3 dark:bg-white/5">
-                <div className="flex min-w-0 items-center gap-3">
-                  <UserAvatar image={user.image} name={user.name} size="size-11" />
-
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-bold">
-                      {user.name || "User"}
-                    </p>
-
-                    <p className="truncate text-xs text-gray-500">
-                      {user.email}
-                    </p>
-                  </div>
-                </div>
-
+              <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4 dark:border-white/10 dark:bg-emerald-950/40">
                 <button
                   type="button"
-                  onClick={handleLogout}
-                  aria-label="Logout"
-                  className="rounded-full p-2 text-red-500 transition hover:bg-red-100 dark:hover:bg-red-950/30"
+                  onClick={() => setIsProfileOpen((prev) => !prev)}
+                  aria-expanded={isProfileOpen}
+                  aria-controls="mobile-profile-menu"
+                  aria-label={`${user.name || "User"} profile menu`}
+                  className="flex w-full items-center gap-3 rounded-lg p-1 text-left"
                 >
-                  <LogOut className="size-5" />
+                  <UserAvatar image={user.image} name={user.name} size="size-12" />
+
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-extrabold tracking-tight text-forest dark:text-emerald-100">
+                      {user.name || "User"}
+                    </span>
+                    <span className="block truncate text-xs text-muted-foreground">
+                      {user.email}
+                    </span>
+                  </span>
+
+                  <ChevronDown
+                    className={`size-4 shrink-0 text-primary transition-transform ${
+                      isProfileOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
+
+                {isProfileOpen && (
+                  <div
+                    id="mobile-profile-menu"
+                    className="mt-3 border-t border-emerald-200 pt-3 dark:border-white/10"
+                  >
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="flex min-h-10 w-full items-center gap-3 rounded-lg bg-red-50 px-3 py-2.5 text-[13px] font-bold text-red-600 transition hover:bg-red-100 dark:bg-red-950/40 dark:text-red-300 dark:hover:bg-red-950/70"
+                    >
+                      <LogOut className="size-4" />
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>

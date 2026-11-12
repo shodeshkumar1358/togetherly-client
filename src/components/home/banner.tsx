@@ -12,7 +12,7 @@ export default function Banner() {
     <main className="bg-[#f0f6f2] text-[#17251d] dark:bg-neutral-950 dark:text-white">
       <section
         aria-labelledby="banner-heading"
-        className="relative isolate min-h-[100svh] overflow-hidden"
+        className="relative isolate min-h-[110svh] overflow-hidden"
       >
         <div className="absolute inset-0 -z-20 bg-[#e8f5ec] dark:bg-neutral-900" />
         <div className="absolute inset-0 -z-10">
@@ -24,7 +24,7 @@ export default function Banner() {
             sizes="(max-width: 640px) 100vw, 80vw"
             className="object-cover object-[42%_center]"
           />
-          <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white/75 via-white/35 to-transparent dark:w-full dark:bg-gradient-to-r dark:from-neutral-950/95 dark:via-neutral-950/80 dark:via-30% dark:to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white/75 via-white/35 to-transparent dark:w-full dark:bg-gradient-to-r dark:from-neutral-950 dark:via-neutral-950/95 dark:via-40% dark:to-transparent" />
           <div className="absolute inset-y-0 right-0 hidden w-[10%] bg-gradient-to-l from-black/35 via-black/15 to-transparent backdrop-blur-[1px] dark:block" />
           <div className="absolute inset-0 hidden bg-gradient-to-t from-neutral-950/30 via-transparent to-transparent dark:block" />
         </div>
@@ -33,7 +33,7 @@ export default function Banner() {
           className="absolute -left-20 top-28 -z-10 size-64 rounded-full bg-emerald-300/20 blur-3xl"
         />
 
-        <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center px-5 pb-24 pt-32 sm:px-8 sm:pb-28 sm:pt-36 lg:px-10">
+        <div className="mx-auto flex min-h-[110svh] max-w-7xl items-center px-5 pb-24 pt-32 sm:px-8 sm:pb-28 sm:pt-36 lg:px-10">
           <div className="max-w-[620px]">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-2 text-xs font-bold text-emerald-950 shadow-sm dark:bg-emerald-950/80 dark:text-emerald-200 sm:text-sm">
               <Leaf
