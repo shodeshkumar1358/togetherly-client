@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 
 const platformLinks = [
-  { label: "Upcoming Events", href: "#upcoming-events", Icon: CalendarDays },
-  { label: "Create an Event", href: "/login", Icon: Sparkles },
+  { label: "Upcoming Events", href: "/event", Icon: CalendarDays },
+  { label: "Create an Event", href: "/event/create", Icon: Sparkles },
   { label: "Explore Features", href: "#features-heading" },
   { label: "Get Community Updates", href: "#subscribe-heading" },
 ];
@@ -99,7 +99,7 @@ export default function Footer() {
                     }`}
                   />
                   <Link
-                    href="#upcoming-events"
+                    href="/event"
                     className="text-sm leading-5 text-[var(--text-secondary)] transition-colors hover:text-primary-dark dark:text-neutral-400 dark:hover:text-emerald-300"
                   >
                     {cause}

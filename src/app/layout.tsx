@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import NavMenu from "@/components/home/nav";
+import Footer from "@/components/home/footer";
 import "./globals.css";
+import NavMenu from "@/components/home/nav";
 
 const Jakarta = Plus_Jakarta_Sans({
   variable: "--font-geist-sans",
@@ -15,13 +16,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${Jakarta.className} h-full antialiased`}
-    >
+    <html lang="en" className={`${Jakarta.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NavMenu />
         {children}
+        <Footer />
       </body>
     </html>
   );

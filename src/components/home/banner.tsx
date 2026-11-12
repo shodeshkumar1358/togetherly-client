@@ -6,7 +6,6 @@ import {
   Leaf,
   UserRound,
 } from "lucide-react";
-import ImpactStats from "@/components/home/impact-stats";
 
 export default function Banner() {
   return (
@@ -25,9 +24,9 @@ export default function Banner() {
             sizes="(max-width: 640px) 100vw, 80vw"
             className="object-cover object-[42%_center]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#dce9df]/95 via-[#e8f0e9]/90 via-30% to-transparent to-55% dark:from-neutral-950/95 dark:via-neutral-950/85 dark:via-30% dark:to-transparent" />
-          <div className="absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-[#062415]/25 via-[#062415]/10 to-transparent backdrop-blur-[1px] dark:from-black/35 dark:via-black/15" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#f0f6f2]/35 via-transparent to-transparent dark:from-neutral-950/30" />
+          <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white/75 via-white/35 to-transparent dark:w-full dark:bg-gradient-to-r dark:from-neutral-950/95 dark:via-neutral-950/80 dark:via-30% dark:to-transparent" />
+          <div className="absolute inset-y-0 right-0 hidden w-[10%] bg-gradient-to-l from-black/35 via-black/15 to-transparent backdrop-blur-[1px] dark:block" />
+          <div className="absolute inset-0 hidden bg-gradient-to-t from-neutral-950/30 via-transparent to-transparent dark:block" />
         </div>
         <div
           aria-hidden="true"
@@ -68,18 +67,18 @@ export default function Banner() {
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
-                href="#upcoming-events"
+                href="/event"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#078f4c] to-[#25c45c] px-6 text-sm font-bold text-white shadow-md shadow-emerald-900/15 transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700"
               >
                 Explore Upcoming Events
                 <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
               <Link
-                href="/volunteer"
+                href="/event/create"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#078f4c] bg-white/70 px-6 text-sm font-bold text-[#087443] transition hover:-translate-y-0.5 hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 dark:bg-neutral-950/60 dark:text-emerald-300 dark:hover:bg-emerald-950/70"
               >
                 <Heart aria-hidden="true" className="size-4 fill-current" />
-                Create an Enent
+                Create an Event
               </Link>
             </div>
 
@@ -104,8 +103,6 @@ export default function Banner() {
           </div>
         </div>
       </section>
-
-      <ImpactStats />
     </main>
   );
 }

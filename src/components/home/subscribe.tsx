@@ -14,25 +14,29 @@ export default function SubscribeSection() {
   return (
     <section
       aria-labelledby="subscribe-heading"
-      className="relative isolate overflow-hidden bg-mint px-5 py-16 text-forest dark:bg-neutral-950 dark:text-white sm:px-8 sm:py-24"
+      className="relative isolate overflow-hidden bg-gradient-to-b from-[#f0f7f1] to-[#e7f4e9] px-5 py-16 text-forest dark:from-neutral-950 dark:to-emerald-950/30 dark:text-white sm:px-8 sm:py-24"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="relative overflow-hidden rounded-[2rem] bg-forest text-white shadow-[0_24px_70px_rgba(6,78,53,0.2)] sm:rounded-[2.5rem]">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-40 top-1/4 z-0 size-[26rem] rounded-full bg-emerald-300/20 blur-3xl dark:bg-emerald-500/10"
+      />
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#064e35] via-[#087443] to-[#075b3c] text-white shadow-[0_24px_70px_rgba(6,78,53,0.22)] ring-1 ring-emerald-950/10 sm:rounded-[2.5rem]">
           <div
             aria-hidden="true"
-            className="absolute -right-20 -top-32 -z-0 size-96 rounded-full bg-[var(--primary)]/25 blur-3xl"
+            className="pointer-events-none absolute -right-20 -top-32 z-0 size-96 rounded-full bg-[#00c853]/25 blur-3xl"
           />
           <div
             aria-hidden="true"
-            className="absolute -bottom-48 left-1/3 -z-0 size-96 rounded-full bg-[var(--fresh-lime)]/15 blur-3xl"
+            className="pointer-events-none absolute -bottom-48 left-1/3 z-0 size-96 rounded-full bg-[var(--fresh-lime)]/15 blur-3xl"
           />
           <div
             aria-hidden="true"
-            className="absolute right-8 top-8 hidden size-40 rounded-full border border-white/10 sm:block"
+            className="pointer-events-none absolute right-8 top-8 z-0 hidden size-40 rounded-full border border-white/10 sm:block"
           />
           <div
             aria-hidden="true"
-            className="absolute right-16 top-16 hidden size-24 rounded-full border border-white/10 sm:block"
+            className="pointer-events-none absolute right-16 top-16 z-0 hidden size-24 rounded-full border border-white/10 sm:block"
           />
 
           <div className="relative z-10 grid gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-16 lg:px-16 lg:py-16">
@@ -91,7 +95,7 @@ export default function SubscribeSection() {
                   type="email"
                 />
                 <button
-                  className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[image:var(--gradient-brand)] px-5 text-sm font-extrabold text-forest shadow-lg shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--fresh-lime)] active:translate-y-0"
+                  className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[image:var(--gradient-brand)] px-5 text-sm font-extrabold text-forest shadow-lg shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--fresh-lime)] active:translate-y-0 motion-reduce:transition-none"
                   type="submit"
                 >
                   Get updates
