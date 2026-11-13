@@ -28,7 +28,7 @@ const EventActionBtn = ({ EventDetails }: { EventDetails: EventDetails }) => {
       ...EventDetails,
     };
 
-    const res = await fetch("http://localhost:5000/event/join", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event/join`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

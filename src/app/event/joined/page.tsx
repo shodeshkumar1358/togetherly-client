@@ -43,7 +43,7 @@ const JoinedEventsPage = async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/event/join/${encodeURIComponent(session.user.email)}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/event/join/${encodeURIComponent(session.user.email)}`,
       { cache: "no-store" },
     );
 

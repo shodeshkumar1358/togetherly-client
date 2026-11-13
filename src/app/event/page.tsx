@@ -102,7 +102,7 @@ export default function AllEventsPage() {
 
     async function loadEvents() {
       try {
-        const response = await fetch("http://localhost:5000/event");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event`);
 
         if (!response.ok) {
           throw new Error(`Could not load events (${response.status}).`);

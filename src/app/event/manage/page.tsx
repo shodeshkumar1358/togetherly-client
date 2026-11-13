@@ -1,4 +1,5 @@
 import Link from "next/link";
+export const dynamic = "force-dynamic";
 import {
   ArrowRight,
   CalendarDays,
@@ -82,7 +83,7 @@ export default async function ManageEventPage() {
   let errorMessage = "";
 
   try {
-    const response = await fetch("http://localhost:5000/event/manage", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event/manage`, {
       cache: "no-store",
     });
 
@@ -100,9 +101,7 @@ export default async function ManageEventPage() {
   } catch (error) {
     console.error("Failed to load managed events:", error);
     errorMessage =
-      error instanceof Error
-        ? error.message
-        : "Please try again in a moment.";
+      error instanceof Error ? error.message : "Please try again in a moment.";
   }
 
   return (
@@ -146,7 +145,9 @@ export default async function ManageEventPage() {
                 aria-hidden="true"
                 className="mx-auto size-9 text-[#078f4c]"
               />
-              <h2 className="mt-3 font-bold">You haven’t created any events yet</h2>
+              <h2 className="mt-3 font-bold">
+                You haven’t created any events yet
+              </h2>
               <p className="mt-2 text-sm text-[#68776d] dark:text-neutral-400">
                 Create a community event and it will appear here.
               </p>
@@ -181,7 +182,10 @@ export default async function ManageEventPage() {
                       {event.type}
                     </span>
                     <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-lg bg-neutral-950/75 px-2.5 py-1.5 text-[11px] font-bold text-white backdrop-blur">
-                      <CalendarDays aria-hidden="true" className="size-3.5 text-[#00c853]" />
+                      <CalendarDays
+                        aria-hidden="true"
+                        className="size-3.5 text-[#00c853]"
+                      />
                       {formatEventDate(event.date)}
                     </span>
                   </div>
